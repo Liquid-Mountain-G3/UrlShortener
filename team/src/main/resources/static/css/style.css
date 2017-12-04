@@ -1,0 +1,20 @@
+.qr-horizontal-card {
+  height: 250px;
+  max-height: 250px;
+  border-radius: .25rem;
+  border-color: rgba(0, 0, 0, 0.125);
+  border-width: 1px;
+  border-style: solid; }
+
+.qr-adder-card {
+  height: 250px;
+  max-height: 250px;
+  border-radius: .25rem;
+  border-color: rgba(0, 0, 0, 0.125);
+  border-width: 2px;
+  border-style: dashed;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+/*# sourceMappingURL=style.css.map */
