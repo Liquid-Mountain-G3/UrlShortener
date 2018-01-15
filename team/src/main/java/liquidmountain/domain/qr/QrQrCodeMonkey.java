@@ -14,6 +14,9 @@ import org.springframework.web.client.RestTemplate;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+/**
+ * This class represents a QR. It uses an external service for the generation of the QR.
+ */
 public class QrQrCodeMonkey extends QrGenerator {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(QrQrCodeMonkey.class);
     private static final String QR_URI = "https://qr-generator.qrcode.studio/qr/custom";
@@ -222,6 +225,22 @@ public class QrQrCodeMonkey extends QrGenerator {
 
         public void setFile(String file) {
             this.file = file;
+        }
+    }
+
+    private static class LogoId {
+        private String id;
+
+        public LogoId(String id) {
+            this.id = id;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
     }
 }

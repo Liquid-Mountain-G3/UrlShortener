@@ -1,5 +1,9 @@
 package liquidmountain.web;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import liquidmountain.domain.qr.*;
 import liquidmountain.repository.QrRepository;
 import org.apache.commons.io.IOUtils;
@@ -18,12 +22,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
+@Api(value = "QRs", description = "Operations pertaining to QR management")
 public class QrController {
     private static final Logger LOGGER = LoggerFactory.getLogger(QrController.class);
 
     @Autowired
     QrRepository qrRepository;
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "Creates a new QR associated with the given hash")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "QR created")})
     @PostMapping(value = "/api/urls/{urlHash:[a-zA-Z0-9]+}/qrs", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> createNewQr(@PathVariable String urlHash,
                                               @RequestPart("bg") String bg,
@@ -46,6 +55,9 @@ public class QrController {
         }
     }
 
+    @ApiOperation(value = "Retrieves a given QR of a given hash")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "QR retrieved correctly")})
     @GetMapping(value = "/api/urls/{urlHash:[a-zA-Z0-9]+}/qrs/{qrId:[0-9]+}")
     public ResponseEntity<byte[]> getQr(@PathVariable String urlHash, @PathVariable int qrId) {
         try {
@@ -62,6 +74,10 @@ public class QrController {
         }
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Updates a given QR of a given hash")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "QR updated")})
     @PatchMapping(value = "/api/urls/{urlHash:[a-zA-Z0-9]+}/qrs/{qrId:[0-9]+}", consumes = MediaType
             .MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> patchExistingQr(@PathVariable String urlHash, @PathVariable int qrId,

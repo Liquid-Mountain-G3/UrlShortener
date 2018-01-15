@@ -5,6 +5,9 @@ import org.springframework.http.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * This class represents an image
+ */
 public class Image {
     private InputStream inputStream;
     private MediaType mediaType;

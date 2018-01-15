@@ -1,5 +1,8 @@
 package liquidmountain.domain.qr;
 
+/**
+ * This abstract class represents a QR.
+ */
 public abstract class QrGenerator {
     protected String data;
     protected Color bg;
@@ -13,6 +16,11 @@ public abstract class QrGenerator {
         this.logoImg = logoImg;
     }
 
+    /**
+     * Generates an image of this QR.
+     *
+     * @return the image of this QR
+     */
     public abstract Image gen();
 
     public String getData() {

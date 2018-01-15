@@ -1,5 +1,8 @@
 package liquidmountain.domain.qr;
 
+/**
+ * This class represents a color
+ */
 public class Color {
     private String color;
 
